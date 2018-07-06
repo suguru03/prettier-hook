@@ -4,11 +4,21 @@
 const vm = require('vm');
 const fs = require('fs');
 const path = require('path');
+const minimist = require('minimist');
 
-const dirname = process.env.DEBUG
-  ? path.join(__dirname, '../node_modules')
-  : Path.join(__dirname, '../../');
-const binpath = path.join(dirname, 'prettier/bin-prettier.js');
+const utils = require('../utils');
+
+const args = minimist(process.argv.slice(2));
+let req = args.r || args.require;
+if (req) {
+  req = Array.isArray(req) ? req : [req];
+  req.forEach(r => {
+    const filepath = path.resolve(process.cwd(), r);
+    require(filepath);
+  });
+}
+
+const { dirname, binpath } = utils.prettier;
 const bin = fs.readFileSync(binpath, 'utf8');
 
 require.main.filename = binpath;
