@@ -1,11 +1,11 @@
 {
-  "name": "pre-prettier",
+  "name": "prettier-hook",
   "version": "0.0.0",
   "private": true,
   "main": "index.js",
   "license": "MIT",
   "bin": {
-    "prettier": "./bin/pre-prettier"
+    "prettier-hook": "./bin/prettier-hook"
   },
   "scripts": {
     "precommit": "lint-staged"
