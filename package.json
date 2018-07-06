@@ -1,9 +1,12 @@
 {
-  "name": "prettier-plugin-sync-to-async",
+  "name": "pre-prettier",
   "version": "0.0.0",
   "private": true,
   "main": "index.js",
   "license": "MIT",
+  "bin": {
+    "prettier": "./bin/pre-prettier"
+  },
   "scripts": {
     "precommit": "lint-staged"
   },
