@@ -2,7 +2,7 @@
 
 const path = require('path');
 
-const utils = require('../../utils');
+const utils = require('../utils');
 
 const { dirname } = utils.prettier;
 const parserpath = path.join(dirname, 'parser-typescript');
