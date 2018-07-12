@@ -15,7 +15,7 @@ const hooks = [];
 // override
 tsParser.parsers.typescript.parse = (...args) => {
   const ast = parser(...args);
-  return hooks.reduce((ast, func) => func(ast), ast);
+  return hooks.reduce((ast, func) => func(ast, ...args), ast);
 };
 
 exports.addHook = func => hooks.push(func);
