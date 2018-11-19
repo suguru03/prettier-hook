@@ -26,7 +26,7 @@ require.main.filename = binpath;
 
 const dummyProcess = {
   ...process,
-  argv: [, , '--version'],
+  argv: [, , ...process.argv.slice(4)],
   exit() {},
 };
 
@@ -36,7 +36,4 @@ const context = {
   process: dummyProcess,
   require,
 };
-const agent = new Agent(bin.replace(/\#.*node/, ''), context).run();
-const { run } = agent.getInnerVariables();
-const ctx = agent.getContext();
-new Agent(run, { ...ctx, process }).setArguments(args._).run();
+new Agent(bin.replace(/\#.*node/, ''), context).run();
