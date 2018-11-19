@@ -4,7 +4,7 @@
   "author": "Suguru Motegi",
   "license": "MIT",
   "bin": {
-    "prettier-hook": "./bin/prettier-hook"
+    "prettier-hook": "./bin/prettier-hook.js"
   },
   "scripts": {
     "precommit": "lint-staged"
