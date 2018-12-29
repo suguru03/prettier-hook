@@ -9,6 +9,12 @@
   "scripts": {
     "precommit": "lint-staged"
   },
+   "files": [
+    "README.md",
+    "bin",
+    "hooks",
+    "utils"
+  ],
   "dependencies": {
     "vm-agent": "^0.5.7"
   },
