@@ -1,6 +1,6 @@
 {
   "name": "prettier-hook",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "author": "Suguru Motegi",
   "license": "MIT",
   "bin": {
@@ -9,7 +9,7 @@
   "scripts": {
     "precommit": "lint-staged"
   },
-   "files": [
+  "files": [
     "README.md",
     "bin",
     "hooks",
