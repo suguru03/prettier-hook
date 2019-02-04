@@ -9,6 +9,7 @@
   "scripts": {
     "precommit": "lint-staged"
   },
+  "homepage": "https://github.com/suguru03/prettier-hook",
   "files": [
     "README.md",
     "bin",
