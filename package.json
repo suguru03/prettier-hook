@@ -4,7 +4,7 @@
   "author": "Suguru Motegi",
   "license": "MIT",
   "bin": {
-    "prettier-hook": "./dist/bin/prettier-hook.js"
+    "prettier-hook": "./bin/prettier-hook"
   },
   "scripts": {
     "build": "rm -rf dist && tsc"
