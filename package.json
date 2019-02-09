@@ -4,7 +4,7 @@
   "author": "Suguru Motegi",
   "license": "MIT",
   "bin": {
-    "prettier-hook": "./bin/prettier-hook.js"
+    "prettier-hook": "./dist/bin/prettier-hook.js"
   },
   "scripts": {
     "precommit": "lint-staged"
@@ -12,9 +12,7 @@
   "homepage": "https://github.com/suguru03/prettier-hook",
   "files": [
     "README.md",
-    "bin",
-    "hooks",
-    "utils"
+    "dist"
   ],
   "dependencies": {
     "vm-agent": "^0.5.7"
@@ -23,10 +21,13 @@
     "prettier": ">= 1.13.7"
   },
   "devDependencies": {
+    "@types/node": "^10.12.24",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
     "minimist": "^1.2.0",
-    "prettier": "^1.13.7"
+    "prettier": "^1.13.7",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3"
   },
   "lint-staged": {
     "*.{js,ts}": [

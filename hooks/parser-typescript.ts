@@ -1,8 +1,6 @@
-'use strict';
+import * as path from 'path';
 
-const path = require('path');
-
-const utils = require('../utils');
+import * as utils from '../utils';
 
 const { dirname } = utils.prettier;
 const parserpath = path.join(dirname, 'parser-typescript');
@@ -10,7 +8,8 @@ const parserpath = path.join(dirname, 'parser-typescript');
 const tsParser = require(parserpath);
 const parser = tsParser.parsers.typescript.parse;
 
-const hooks = [];
+type Hook = (...args: any[]) => any;
+const hooks: Hook[] = [];
 
 // override
 tsParser.parsers.typescript.parse = (...args) => {
@@ -18,4 +17,4 @@ tsParser.parsers.typescript.parse = (...args) => {
   return hooks.reduce((ast, func) => func(ast, ...args), ast);
 };
 
-exports.addHook = func => hooks.push(func);
+exports.addHook = (func: Hook) => hooks.push(func);

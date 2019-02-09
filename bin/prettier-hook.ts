@@ -1,13 +1,12 @@
 #!/usr/bin/env node
-'use strict';
 
-const fs = require('fs');
-const path = require('path');
+import * as fs from 'fs';
+import * as path from 'path';
 
-const { Agent } = require('vm-agent');
-const minimist = require('minimist');
+import { Agent } from 'vm-agent';
+import * as minimist from 'minimist';
 
-const utils = require('../utils');
+import * as utils from '../utils';
 
 const args = minimist(process.argv.slice(2));
 let requires = args.r || args.require;
@@ -22,7 +21,7 @@ if (requires) {
 const { dirname, binpath } = utils.prettier;
 const bin = fs.readFileSync(binpath, 'utf8');
 
-require.main.filename = binpath;
+require.main!.filename = binpath;
 
 const dummyProcess = {
   ...process,
