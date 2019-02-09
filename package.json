@@ -7,11 +7,12 @@
     "prettier-hook": "./dist/bin/prettier-hook.js"
   },
   "scripts": {
-    "precommit": "lint-staged"
+    "build": "rm -rf dist && tsc"
   },
   "homepage": "https://github.com/suguru03/prettier-hook",
   "files": [
     "README.md",
+    "bin",
     "dist"
   ],
   "dependencies": {
@@ -28,6 +29,11 @@
     "prettier": "^1.13.7",
     "tslint": "^5.12.1",
     "typescript": "^3.3.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run build"
+    }
   },
   "lint-staged": {
     "*.{js,ts}": [
