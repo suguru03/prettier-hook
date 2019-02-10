@@ -1,10 +1,12 @@
+#!/usr/bin/env node
+
 import * as fs from 'fs';
 import * as path from 'path';
 
 import { Agent } from 'vm-agent';
 import * as minimist from 'minimist';
 
-import * as utils from './utils';
+import * as utils from '../utils';
 
 const args = minimist(process.argv.slice(2));
 let requires = args.r || args.require;

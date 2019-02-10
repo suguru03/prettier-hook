@@ -7,7 +7,8 @@
     "prettier-hook": "./bin/prettier-hook"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc"
+    "build": "rm -rf dist && tsc && npm run copy",
+    "copy": "cp package.json dist && cp README.md dist && chmod 755 dist/bin/prettier-hook.js"
   },
   "homepage": "https://github.com/suguru03/prettier-hook",
   "files": [

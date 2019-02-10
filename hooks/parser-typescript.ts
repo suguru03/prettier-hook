@@ -17,4 +17,4 @@ tsParser.parsers.typescript.parse = (...args) => {
   return hooks.reduce((ast, func) => func(ast, ...args), ast);
 };
 
-exports.addHook = (func: Hook) => hooks.push(func);
+export const addHook = (func: Hook) => hooks.push(func);
