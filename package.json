@@ -8,13 +8,14 @@
   },
   "scripts": {
     "build": "rm -rf dist && tsc && npm run copy",
-    "copy": "cp package.json dist && cp README.md dist && chmod 755 dist/bin/prettier-hook.js"
+    "copy": "cp package.json dist && cp README.md dist"
   },
   "homepage": "https://github.com/suguru03/prettier-hook",
   "files": [
     "README.md",
     "bin",
-    "dist"
+    "hooks",
+    "utils"
   ],
   "dependencies": {
     "vm-agent": "^0.5.7"
