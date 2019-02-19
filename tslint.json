@@ -1,0 +1,15 @@
+{
+  "extends": "tslint:recommended",
+  "rules": {
+    "arrow-parens": false,
+    "interface-name": false,
+    "max-classes-per-file": false,
+    "member-access": false,
+    "no-empty-interface": false,
+    "no-namespace": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "quotemark": false,
+    "semicolon": [true, "always", "ignore-bound-class-methods"]
+  }
+}
