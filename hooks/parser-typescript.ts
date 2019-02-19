@@ -5,7 +5,7 @@ import * as utils from '../utils';
 const { dirname } = utils.prettier;
 const parserpath = path.join(dirname, 'parser-typescript');
 
-const tsParser: any = import(parserpath);
+const tsParser = require(parserpath); // tslint:disable-line no-var-requires
 const parser = tsParser.parsers.typescript.parse;
 
 type Hook = (...args: any[]) => any;
