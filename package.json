@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "rm -rf dist && tsc && npm run copy",
-    "copy": "cp package.json dist && cp README.md dist"
+    "copy": "cp package.json dist && cp README.md dist && chmod 755 dist/bin/*.js"
   },
   "homepage": "https://github.com/suguru03/prettier-hook",
   "files": [
