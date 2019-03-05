@@ -5,6 +5,7 @@ const dirname = [
   // peer dependency path
   path.join(__dirname, '../../prettier'),
   // debug path
+  path.join(__dirname, '../node_modules/prettier'),
   path.join(__dirname, '../../node_modules/prettier'),
 ].find(fs.existsSync);
 if (!dirname) {
