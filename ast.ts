@@ -1,10 +1,4 @@
-type AstResolver = <T = boolean>(node: any, key: string | number, ast: Ast) => boolean;
-
-interface ResolverMap {
-  [targetType: string]: AstResolver;
-}
-
-const rootKey = Symbol('root');
+type AstResolver<T = boolean> = (node: any, key: string | number, ast: Ast) => T;
 
 type AstType =
   | 'File'
@@ -63,15 +57,21 @@ type AstType =
   | 'TSTupleType';
 
 export class Ast {
-  private readonly resolverMap: ResolverMap = {};
+  private static readonly root = Symbol('root');
+
+  private readonly resolverMap: Map<string, AstResolver<any>> = new Map();
 
   set(type: AstType, resolver: AstResolver) {
-    this.resolverMap[type] = resolver;
+    this.resolverMap.set(type, resolver);
     return this;
   }
 
-  resolveAst(parent: any, key: any = rootKey): boolean {
-    parent = key === rootKey ? { [key]: parent } : parent;
+  super<T = any>(parent: any, key: string | number): T | boolean {
+    return this.resolveAst(parent, key, true);
+  }
+
+  resolveAst<T = any>(parent: any, key: any = Ast.root, ignoreResolver: boolean = false): T | boolean {
+    parent = key === Ast.root ? { [key]: parent } : parent;
     const tree = parent[key];
     if (!tree) {
       return false;
@@ -84,8 +84,8 @@ export class Ast {
       return resolved;
     }
     const type: AstType = tree.type;
-    const resolver = this.resolverMap[type];
-    if (resolver) {
+    const resolver = this.resolverMap.get(type);
+    if (!ignoreResolver && resolver) {
       return resolver(parent, key, this);
     }
     switch (type) {
