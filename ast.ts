@@ -1,4 +1,4 @@
-type AstResolver = (node: any, key: any, ast: Ast) => any;
+type AstResolver = <T = boolean>(node: any, key: string | number, ast: Ast) => boolean;
 
 interface ResolverMap {
   [targetType: string]: AstResolver;
@@ -6,10 +6,66 @@ interface ResolverMap {
 
 const rootKey = Symbol('root');
 
+type AstType =
+  | 'File'
+  | 'Program'
+  | 'ImportDeclaration'
+  | 'ExportDefaultDeclaration'
+  | 'ExportNamedDeclaration'
+  | 'ClassBody'
+  | 'ClassProperty'
+  | 'ClassDeclaration'
+  | 'MethodDefinition'
+  | 'TemplateLiteral'
+  | 'ObjectExpression'
+  | 'Property'
+  | 'FunctionExpression'
+  | 'ArrowFunctionExpression'
+  | 'ReturnStatement'
+  | 'UpdateExpression'
+  | 'UnaryExpression'
+  | 'BlockStatement'
+  | 'IfStatement'
+  | 'SwitchStatement'
+  | 'SwitchCase'
+  | 'ExpressionStatement'
+  | 'BinaryExpression'
+  | 'LogicalExpression'
+  | 'AssignmentExpression'
+  | 'MemberExpression'
+  | 'CallExpression'
+  | 'TryStatement'
+  | 'CatchClause'
+  | 'Super'
+  | 'ThisExpression'
+  | 'ForStatement'
+  | 'ForOfStatement'
+  | 'Identifier'
+  | 'VariableDeclaration'
+  | 'VariableDeclarator'
+  | 'AwaitExpression'
+  | 'Directive'
+  | 'DirectiveLiteral'
+  | 'TSModuleBlock'
+  | 'TSModuleDeclaration'
+  | 'TSAbstractClassDeclaration'
+  | 'TSTypeAnnotation'
+  | 'TSAsExpression'
+  | 'TSNamespaceExportDeclaration'
+  | 'TSTypeQuery'
+  | 'TSAnyKeyword'
+  | 'TSStringKeyword'
+  | 'TSNumberKeyword'
+  | 'TSUnionType'
+  | 'TSTypeReference'
+  | 'TSFunctionType'
+  | 'TSTypeParameterInstantiation'
+  | 'TSTupleType';
+
 export class Ast {
   private readonly resolverMap: ResolverMap = {};
 
-  set(type: string, resolver: AstResolver) {
+  set(type: AstType, resolver: AstResolver) {
     this.resolverMap[type] = resolver;
     return this;
   }
@@ -27,7 +83,7 @@ export class Ast {
       }
       return resolved;
     }
-    const { type } = tree;
+    const type: AstType = tree.type;
     const resolver = this.resolverMap[type];
     if (resolver) {
       return resolver(parent, key, this);
@@ -36,7 +92,7 @@ export class Ast {
       case 'File':
         return this.resolveAst(tree, 'program');
       case 'Program':
-        return this.resolveAst(tree, 'body');
+        return this.resolveAll(tree, ['body', 'directives']);
       case 'ImportDeclaration':
         return false;
       case 'ExportDefaultDeclaration':
@@ -103,6 +159,10 @@ export class Ast {
         return this.resolveAst(tree, 'init');
       case 'AwaitExpression':
         return false;
+      case 'Directive':
+        return this.resolveAst(tree, 'value');
+      case 'DirectiveLiteral':
+        return false;
       // TS
       case 'TSModuleBlock':
       case 'TSModuleDeclaration':
@@ -123,7 +183,11 @@ export class Ast {
       case 'TSTypeReference':
         return this.resolveAll(tree, ['typeName', 'typeParameters']);
       case 'TSFunctionType':
-        return this.resolveAll(tree, ['typeParameters', 'parameters', 'typeAnnotation']);
+        return this.resolveAll(tree, [
+          'typeParameters',
+          'parameters',
+          'typeAnnotation',
+        ]);
       case 'TSTypeParameterInstantiation':
         return this.resolveAst(tree, 'params');
       case 'TSTupleType':
