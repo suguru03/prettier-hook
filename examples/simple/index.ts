@@ -1,5 +1,4 @@
-import { addHook } from '../../dist/hooks/parser-babylon';
-import { Ast } from '../../ast';
+import { Ast, hooks } from '../../';
 
 function parse(ast) {
   new Ast().set('VariableDeclaration', resolve).resolveAst(ast);
@@ -7,7 +6,7 @@ function parse(ast) {
   return ast;
 }
 
-addHook(parse);
+hooks.babylon.addHook(parse);
 
 function resolve(node, key) {
   let variableDeclarator: any;

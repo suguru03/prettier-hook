@@ -3,14 +3,14 @@
 The library allows to modify the AST before executing Prettier.
 
 ```js
-indindex.tsnst { addHook } = require('prettier-hook/hooks/parser-typescript');
+const { hooks } = require('prettier-hook');
 
 function parse(ast) {
   // modify AST
   return ast;
 }
 
-addHook(parse);
+hooks.typescript.addHook(parse);
 ```
 
 ```sh

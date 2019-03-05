@@ -3,6 +3,7 @@
   "version": "0.3.2",
   "author": "Suguru Motegi",
   "license": "MIT",
+  "main": "index.js",
   "bin": {
     "prettier-hook": "./bin/prettier-hook"
   },
