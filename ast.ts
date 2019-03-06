@@ -1,4 +1,8 @@
-type AstResolver<T = boolean> = (node: any, key: string | number, ast: Ast) => T;
+type AstResolver<T = boolean> = (
+  node: any,
+  key: string | number,
+  ast: Ast,
+) => T;
 
 type AstType =
   | 'File'
@@ -6,6 +10,7 @@ type AstType =
   | 'ImportDeclaration'
   | 'ExportDefaultDeclaration'
   | 'ExportNamedDeclaration'
+  | 'FunctionDeclaration'
   | 'ClassBody'
   | 'ClassMethod'
   | 'ClassProperty'
@@ -71,7 +76,11 @@ export class Ast {
     return this.resolveAst(parent, key, true);
   }
 
-  resolveAst<T = any>(parent: any, key: any = Ast.root, ignoreResolver: boolean = false): T | boolean {
+  resolveAst<T = any>(
+    parent: any,
+    key: any = Ast.root,
+    ignoreResolver: boolean = false,
+  ): T | boolean {
     parent = key === Ast.root ? { [key]: parent } : parent;
     const tree = parent[key];
     if (!tree) {
@@ -99,6 +108,9 @@ export class Ast {
       case 'ExportDefaultDeclaration':
       case 'ExportNamedDeclaration':
         return this.resolveAst(tree, 'declaration');
+      // function
+      case 'FunctionDeclaration':
+        return this.resolveAll(tree, ['body', 'id', 'params']);
       // class
       case 'ClassBody':
         return this.resolveAst(tree, 'body');
