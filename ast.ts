@@ -7,6 +7,7 @@ type AstType =
   | 'ExportDefaultDeclaration'
   | 'ExportNamedDeclaration'
   | 'ClassBody'
+  | 'ClassMethod'
   | 'ClassProperty'
   | 'ClassDeclaration'
   | 'MethodDefinition'
@@ -101,10 +102,12 @@ export class Ast {
       // class
       case 'ClassBody':
         return this.resolveAst(tree, 'body');
+      case 'ClassMethod':
+        return this.resolveAll(tree, ['key', 'body']);
       case 'ClassProperty':
         return this.resolveAst(tree, 'typeAnnotation');
       case 'ClassDeclaration':
-        return this.resolveAst(tree, 'body');
+        return this.resolveAll(tree, ['body', 'superClass']);
       case 'MethodDefinition':
         return false;
       case 'TemplateLiteral':
