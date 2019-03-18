@@ -4,12 +4,13 @@
   "author": "Suguru Motegi",
   "license": "MIT",
   "main": "index.js",
+  "private": true,
   "bin": {
     "prettier-hook": "./bin/prettier-hook"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc && npm run copy",
-    "copy": "cp package.json dist && cp README.md dist && chmod 755 dist/bin/*.js"
+    "build": "tsp build",
+    "publish:npm": "tsp publish"
   },
   "homepage": "https://github.com/suguru03/prettier-hook",
   "files": [
@@ -31,6 +32,7 @@
     "minimist": "^1.2.0",
     "prettier": "^1.13.7",
     "ts-node": "^8.0.2",
+    "ts-publisher": "^0.1.0",
     "tslint": "^5.12.1",
     "typescript": "^3.3.3"
   },
