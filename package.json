@@ -1,6 +1,6 @@
 {
   "name": "prettier-hook",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "author": "Suguru Motegi",
   "license": "MIT",
   "main": "index.js",
