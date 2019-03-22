@@ -15,7 +15,7 @@
   "files": [
     "README.md",
     "bin",
-    "ast",
+    "lib",
     "hooks",
     "utils"
   ],
