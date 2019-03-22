@@ -12,13 +12,6 @@
     "build": "tsp build"
   },
   "homepage": "https://github.com/suguru03/prettier-hook",
-  "files": [
-    "README.md",
-    "bin",
-    "lib",
-    "hooks",
-    "utils"
-  ],
   "dependencies": {
     "vm-agent": "^0.5.7"
   },
