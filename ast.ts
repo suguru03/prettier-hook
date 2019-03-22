@@ -1,10 +1,10 @@
-type AstResolver<T = boolean> = (
+export type AstResolver<T = boolean> = (
   node: any,
   key: string | number,
   ast: Ast,
 ) => T;
 
-type AstType =
+export type AstType =
   | 'File'
   | 'Program'
   | 'ImportDeclaration'

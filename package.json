@@ -9,13 +9,13 @@
     "prettier-hook": "./bin/prettier-hook"
   },
   "scripts": {
-    "build": "tsp build",
-    "publish:npm": "tsp publish"
+    "build": "tsp build"
   },
   "homepage": "https://github.com/suguru03/prettier-hook",
   "files": [
     "README.md",
     "bin",
+    "ast",
     "hooks",
     "utils"
   ],
