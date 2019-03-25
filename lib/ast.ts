@@ -41,6 +41,7 @@ export type AstType =
   | 'ForStatement'
   | 'ForOfStatement'
   | 'Identifier'
+  | 'Literal'
   | 'VariableDeclaration'
   | 'VariableDeclarator'
   | 'AwaitExpression'
@@ -167,6 +168,8 @@ export class Ast {
         return this.resolveAll(tree, ['left', 'right', 'body']);
       case 'Identifier':
         return this.resolveAst(tree, 'typeAnnotation');
+      case 'Literal':
+        return this.resolveAst(tree, 'value');
       // variables
       case 'VariableDeclaration':
         return this.resolveAst(tree, 'declarations');
