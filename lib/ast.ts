@@ -11,6 +11,7 @@ export type AstType =
   | 'ExportDefaultDeclaration'
   | 'ExportNamedDeclaration'
   | 'FunctionDeclaration'
+  | 'AssignmentPattern'
   | 'ClassBody'
   | 'ClassMethod'
   | 'ClassProperty'
@@ -112,6 +113,8 @@ export class Ast {
       // function
       case 'FunctionDeclaration':
         return this.resolveAll(tree, ['body', 'id', 'params']);
+      case 'AssignmentPattern':
+        return this.resolveAll(tree, ['left', 'right']);
       // class
       case 'ClassBody':
         return this.resolveAst(tree, 'body');
