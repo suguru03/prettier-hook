@@ -5,9 +5,7 @@
   "license": "MIT",
   "main": "index.js",
   "private": true,
-  "bin": {
-    "prettier-hook": "./bin/prettier-hook"
-  },
+  "bin": "./bin/prettier-hook.js",
   "scripts": {
     "build": "tsp build"
   },
