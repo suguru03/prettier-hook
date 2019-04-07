@@ -14,9 +14,9 @@ hooks.typescript.addHook(parse);
 ```
 
 ```sh
-npx prettier-hook --require indindex.tsilepath>
+npx prettier-hook --require <filepath>
 // or
-yarn prettier-hook --require indindex.tsilepath>
+yarn prettier-hook --require <filepath>
 ```
 ## Example
 
@@ -38,5 +38,6 @@ import * as fs from 'fs';
 
 ## Use case
 
+- [javascript2typescript](https://github.com/suguru03/javascript2typescript)
 - [typeg](https://github.com/suguru03/typeg)
 
