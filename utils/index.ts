@@ -1,13 +1,16 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
+const libName = 'prettier';
 const dirname = [
   // peer dependency path
-  path.join(__dirname, '../../prettier'),
+  '../..',
   // debug path
-  path.join(__dirname, '../node_modules/prettier'),
-  path.join(__dirname, '../../node_modules/prettier'),
-].find(fs.existsSync);
+  '../node_modules',
+  '../../node_modules',
+]
+  .map((dirPath) => path.join(__dirname, dirPath, libName))
+  .find(fs.existsSync);
 if (!dirname) {
   throw new Error('prettier not found');
 }
