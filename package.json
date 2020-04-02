@@ -11,7 +11,7 @@
   },
   "homepage": "https://github.com/suguru03/prettier-hook",
   "dependencies": {
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.5",
     "vm-agent": "^0.6.0"
   },
   "peerDependencies": {
