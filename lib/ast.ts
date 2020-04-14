@@ -206,7 +206,7 @@ export class Ast {
       case 'TSFunctionType':
         return this.resolveAll(tree, [
           'typeParameters',
-          'parameters',
+          'params',
           'typeAnnotation',
         ]);
       case 'TSTypeParameterInstantiation':
